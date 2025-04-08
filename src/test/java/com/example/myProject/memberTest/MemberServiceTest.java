@@ -10,9 +10,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
 
 @SpringBootTest
 @Transactional
+@Rollback(false)    // 이거면 트렌젝션 발동 x 실제로 DB에 커밋해버림
 public class MemberServiceTest {
     @Autowired
     MemberRepository memberRepository;
