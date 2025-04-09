@@ -5,6 +5,8 @@ import com.example.myProject.dto.SignupRequest;
 import com.example.myProject.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MemberService {
 
@@ -22,5 +24,9 @@ public class MemberService {
         member.setEmail(request.getEmail());
 
         memberRepository.save(member);
+    }
+
+    public Optional<Member> findByUsername(String username) {
+        return memberRepository.findByUsername(username);
     }
 }

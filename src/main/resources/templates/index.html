@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>나의 스프링 프로젝트</title>
+    <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          background-color: #f5f6fa;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+        }
+
+        h1 {
+          color: #2f3640;
+          margin-bottom: 40px;
+        }
+
+        .button-group {
+          display: flex;
+          gap: 20px;
+        }
+
+        button {
+          padding: 12px 24px;
+          font-size: 16px;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .login-btn {
+          background-color: #4cd137;
+          color: white;
+        }
+
+        .login-btn:hover {
+          background-color: #44bd32;
+        }
+
+        .signup-btn {
+          background-color: #487eb0;
+          color: white;
+        }
+
+        .signup-btn:hover {
+          background-color: #40739e;
+        }
+
+        .logout-btn {
+          background-color: #e84118;
+          color: white;
+        }
+
+        .logout-btn:hover {
+          background-color: #c23616;
+        }
+
+        .welcome-text {
+          margin-bottom: 20px;
+          color: #2f3640;
+          font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<h1>👋 나의 스프링 프로젝트에 오신 것을 환영합니다!</h1>
+
+<!-- 로그인 O -->
+<div th:if="${username}" class="button-group">
+    <p class="welcome-text" th:text="|${username}님, 환영합니다!|"></p>
+    <button class="logout-btn" onclick="location.href='/logout'">로그아웃</button>
+</div>
+
+<!-- 로그인 X -->
+<div th:unless="${username}" class="button-group">
+    <button class="login-btn" onclick="location.href='/login'">로그인</button>
+    <button class="signup-btn" onclick="location.href='/signup'">회원가입</button>
+</div>
+
+</body>
+</html>

@@ -1,16 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+    <style>
+        body {
+          font-family: 'Arial', sans-serif;
+          background-color: #f0f2f5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+        }
+
+        .signup-container {
+          background-color: white;
+          padding: 40px;
+          border-radius: 12px;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+          width: 100%;
+          max-width: 400px;
+        }
+
+        h1 {
+          text-align: center;
+          color: #333;
+          margin-bottom: 30px;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 15px;
+          color: #555;
+          font-size: 14px;
+        }
+
+        input {
+          width: 100%;
+          padding: 10px;
+          margin-top: 5px;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          font-size: 14px;
+        }
+
+        button {
+          width: 100%;
+          padding: 12px;
+          background-color: #3498db;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 16px;
+          margin-top: 20px;
+          cursor: pointer;
+          transition: background 0.3s;
+        }
+
+        button:hover {
+          background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-<h1>회원가입</h1>
-<form action="/signup" method="post">
-    <label>아이디: <input type="text" name="username" /></label><br/>
-    <label>비밀번호: <input type="password" name="password" /></label><br/>
-    <label>이메일: <input type="email" name="email" /></label><br/>
-    <button type="submit">회원가입</button>
-</form>
+<div class="signup-container">
+    <h1>회원가입</h1>
+    <form action="/signup" method="post">
+        <label>아이디:
+            <input type="text" name="username" required />
+        </label>
+        <label>비밀번호:
+            <input type="password" name="password" required />
+        </label>
+        <label>이메일:
+            <input type="email" name="email" required />
+        </label>
+        <button type="submit">회원가입</button>
+    </form>
+</div>
 </body>
 </html>
