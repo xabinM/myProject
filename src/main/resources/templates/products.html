@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 목록</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .register-btn-container {
+      text-align: right;
+      margin-bottom: 20px;
+    }
+
+    .register-btn {
+      padding: 10px 20px;
+      background-color: #487eb0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .register-btn:hover {
+      background-color: #40739e;
+    }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    .product-card img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .product-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    .product-price {
+      color: #27ae60;
+      margin-top: 5px;
+    }
+
+    .product-desc {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+<h1>📦 등록된 상품 목록</h1>
+
+<!-- ✅ 버튼: 스타일 분리 완료 -->
+<div class="register-btn-container">
+  <button class="register-btn" onclick="location.href='/register'">+ 상품 등록하기</button>
+</div>
+
+<div class="product-list">
+  <div th:each="product : ${products}" class="product-card">
+    <img th:src="${product.imageUrl}" alt="상품 이미지">
+    <div class="product-title" th:text="${product.productName}"></div>
+    <div class="product-price" th:text="|${product.price}원|"></div>
+    <div class="product-desc" th:text="${product.description}"></div>
+  </div>
+</div>
+</body>
+</html>

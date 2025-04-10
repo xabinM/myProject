@@ -1,7 +1,7 @@
 package com.example.myProject.memberTest;
 
 import com.example.myProject.domain.member.Member;
-import com.example.myProject.dto.SignupRequest;
+import com.example.myProject.dto.member.SignupRequest;
 import com.example.myProject.repository.MemberRepository;
 import com.example.myProject.service.MemberService;
 import jakarta.transaction.Transactional;

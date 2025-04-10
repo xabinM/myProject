@@ -75,6 +75,7 @@
 <!-- 로그인 O -->
 <div th:if="${username}" class="button-group">
     <p class="welcome-text" th:text="|${username}님, 환영합니다!|"></p>
+    <button onclick="location.href='/products'">상품 목록</button>
     <button class="logout-btn" onclick="location.href='/logout'">로그아웃</button>
 </div>
 

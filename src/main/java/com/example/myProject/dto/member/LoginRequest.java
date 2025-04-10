@@ -1,4 +1,4 @@
-package com.example.myProject.dto;
+package com.example.myProject.dto.member;
 
 import lombok.Getter;
 import lombok.Setter;

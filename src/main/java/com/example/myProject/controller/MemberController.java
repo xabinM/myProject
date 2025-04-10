@@ -1,8 +1,8 @@
 package com.example.myProject.controller;
 
 import com.example.myProject.domain.member.Member;
-import com.example.myProject.dto.LoginRequest;
-import com.example.myProject.dto.SignupRequest;
+import com.example.myProject.dto.member.LoginRequest;
+import com.example.myProject.dto.member.SignupRequest;
 import com.example.myProject.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;

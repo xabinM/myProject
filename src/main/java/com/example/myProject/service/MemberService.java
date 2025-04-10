@@ -1,7 +1,7 @@
 package com.example.myProject.service;
 
 import com.example.myProject.domain.member.Member;
-import com.example.myProject.dto.SignupRequest;
+import com.example.myProject.dto.member.SignupRequest;
 import com.example.myProject.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
