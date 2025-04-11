@@ -2,8 +2,10 @@ package com.example.myProject.service;
 
 import com.example.myProject.domain.member.Member;
 import com.example.myProject.domain.product.Product;
+import com.example.myProject.dto.product.ProductEditRequest;
 import com.example.myProject.dto.product.ProductRegisterRequest;
 import com.example.myProject.repository.ProductRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +33,13 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Transactional
+    public void updateProduct(Long productId, ProductEditRequest request) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("상품 없음"));
+
+        product.updatePartial(request);
     }
 }
