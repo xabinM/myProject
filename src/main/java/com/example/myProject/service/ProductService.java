@@ -33,6 +33,11 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public Product getProduct(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("상품 없음"));
+    }
+
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }

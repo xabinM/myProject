@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -46,9 +47,19 @@ public class ProductController {
         return "redirect:/products";
     }
 
+    @GetMapping("/products/{id}/edit")
+    public String editPage(@PathVariable Long id, Model model) {
+        Product product = productService.getProduct(id);
+
+        // 이 상품을 수정한다는  model 던지기
+        model.addAttribute("product", product);
+        return "edit";
+    }
+
     @PostMapping("/edit")
-    public String editProduct(@Valid @ModelAttribute ProductEditRequest request) {
-        productService.updateProduct(request);
+    public String editProduct(@Valid @ModelAttribute ProductEditRequest request, HttpSession session) {
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        productService.updateProduct(loginMember.getId(), request);
         return "redirect:/products";
     }
 }
