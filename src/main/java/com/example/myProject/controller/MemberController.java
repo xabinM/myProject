@@ -65,14 +65,15 @@ public class MemberController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute LoginRequest request, HttpSession session, Model model) {
-        Optional<Member> optionalMember = memberService.findByUsername(request.getUsername());
-        if (optionalMember.isEmpty() || !optionalMember.get().getPassword().equals(request.getPassword())) {
-            model.addAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
+        try {
+            Member member = memberService.login(request.getUsername(), request.getPassword());
+            session.setAttribute("loginMember", member);
+
+            return "redirect:/";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
             return "login";
         }
-
-        session.setAttribute("loginMember", optionalMember.get());
-        return "redirect:/";
     }
 
     @GetMapping("/logout")

@@ -26,7 +26,14 @@ public class MemberService {
         memberRepository.save(member);
     }
 
-    public Optional<Member> findByUsername(String username) {
-        return memberRepository.findByUsername(username);
+    public Member login(String username, String password) {
+        Member member = memberRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("아이디가 존재하지 않습니다."));
+
+        if (!member.getPassword().equals(password)) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        return member;
     }
 }
