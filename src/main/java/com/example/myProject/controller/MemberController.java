@@ -34,7 +34,12 @@ public class MemberController {
     }
 
     @GetMapping("/signup")
-    public String signupPage() {
+    public String signupPage(HttpSession session, Model model) {
+        Member member = (Member) session.getAttribute("loginMember");
+        if (member != null) {
+            model.addAttribute("username", member.getUsername());
+            return "index";
+        }
         return "signup";        // → templates/signup.html 을 보여줌
     }
 
@@ -47,7 +52,14 @@ public class MemberController {
     }
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(HttpSession session, Model model) {
+        Member member = (Member) session.getAttribute("loginMember");
+
+        if (member != null) {
+            model.addAttribute("username", member.getUsername());
+            return "index";
+        }
+
         return "login";
     }
 
