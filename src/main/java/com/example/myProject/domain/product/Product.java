@@ -1,6 +1,7 @@
 package com.example.myProject.domain.product;
 
 import com.example.myProject.domain.BaseTimeEntity;
+import com.example.myProject.domain.ProductStatus;
 import com.example.myProject.domain.member.Member;
 import com.example.myProject.dto.product.ProductEditRequest;
 import jakarta.persistence.*;
@@ -27,6 +28,9 @@ public class Product extends BaseTimeEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "seller_id")
     private Member seller;
+
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
 
     public void updatePartial(ProductEditRequest request) {
         if (request.getProductName() != null) {

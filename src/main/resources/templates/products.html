@@ -86,6 +86,7 @@
     <div class="product-title" th:text="${product.productName}"></div>
     <div class="product-price" th:text="|${product.price}원|"></div>
     <div class="product-desc" th:text="${product.description}"></div>
+    <div th:text="${product.status == 'SOLD_OUT' ? '판매완료' : '판매중'}"></div>
   </div>
 </div>
 </body>

@@ -1,5 +1,6 @@
 package com.example.myProject.service;
 
+import com.example.myProject.domain.ProductStatus;
 import com.example.myProject.domain.member.Member;
 import com.example.myProject.domain.product.Product;
 import com.example.myProject.dto.product.ProductEditRequest;
@@ -27,6 +28,7 @@ public class ProductService {
         product.setPrice(request.getPrice());
         product.setDescription(request.getDescription());
         product.setSeller(seller);
+        product.setStatus(ProductStatus.SELLING);
 
         productRepository.save(product);
     }
