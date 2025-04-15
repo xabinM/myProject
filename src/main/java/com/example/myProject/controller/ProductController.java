@@ -30,7 +30,17 @@ public class ProductController {
     public String productsPage(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
+
         return "products";
+    }
+
+    @GetMapping("/myProducts")
+    public String myProductsPage(Model model, HttpSession session) {
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        List<Product> myProducts = productService.getMyProducts(loginMember.getId());
+        model.addAttribute("myProducts", myProducts);
+
+        return "myProducts";
     }
 
     @GetMapping("/register")
@@ -53,6 +63,7 @@ public class ProductController {
 
         // 이 상품을 수정한다는  model 던지기
         model.addAttribute("product", product);
+
         return "edit";
     }
 
@@ -60,6 +71,14 @@ public class ProductController {
     public String editProduct(@Valid @ModelAttribute ProductEditRequest request, HttpSession session) {
         Member loginMember = (Member) session.getAttribute("loginMember");
         productService.updateProduct(loginMember.getId(), request);
+
+        return "redirect:/products";
+    }
+
+    @PostMapping("/products/{id}/delete")
+    public String deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+
         return "redirect:/products";
     }
 }

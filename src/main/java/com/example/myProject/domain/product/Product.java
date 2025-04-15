@@ -32,6 +32,8 @@ public class Product extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
 
+    private boolean isDeleted;
+
     public void updatePartial(ProductEditRequest request) {
         if (request.getProductName() != null) {
             this.productName = request.getProductName();

@@ -29,6 +29,7 @@ public class ProductService {
         product.setDescription(request.getDescription());
         product.setSeller(seller);
         product.setStatus(ProductStatus.SELLING);
+        product.setDeleted(false);
 
         productRepository.save(product);
     }
@@ -38,15 +39,26 @@ public class ProductService {
                 .orElseThrow(() -> new IllegalArgumentException("상품 없음"));
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<Product> getMyProducts(Long id) {
+        return productRepository.findAllBySellerId(id);
     }
 
-    @Transactional
+    public List<Product> getAllProducts() {
+        return productRepository.findAllByIsDeletedFalse();
+    }
+
+    @Transactional  // dirty checking 을 위한
     public void updateProduct(Long productId, ProductEditRequest request) {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("상품 없음"));
 
         product.updatePartial(request);
+    }
+
+    @Transactional  // dirty checking 을 위한
+    public void deleteProduct(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("상품 없음"));
+        product.setDeleted(true);
     }
 }
