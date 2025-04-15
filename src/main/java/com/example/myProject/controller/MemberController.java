@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Optional;
-
 @Controller
 public class MemberController {
 
@@ -20,17 +18,6 @@ public class MemberController {
 
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
-    }
-
-    @GetMapping("/")
-    public String mainPage(HttpSession session, Model model) {
-        Member member = (Member) session.getAttribute("loginMember");
-
-        if (member != null) {
-            model.addAttribute("username", member.getUsername());
-        }
-
-        return "index";
     }
 
     @GetMapping("/signup")
