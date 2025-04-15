@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 수정</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f5f6fa;
+          padding: 30px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        h1 {
+          color: #2f3640;
+          margin-bottom: 30px;
+        }
+
+        form {
+          background: white;
+          padding: 30px;
+          border-radius: 16px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          width: 400px;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 15px;
+          font-weight: bold;
+        }
+
+        input, textarea {
+          width: 100%;
+          padding: 10px;
+          margin-top: 5px;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+
+        button {
+          width: 100%;
+          padding: 12px;
+          background-color: #487eb0;
+          color: white;
+          font-size: 16px;
+          border: none;
+          border-radius: 10px;
+          margin-top: 20px;
+          cursor: pointer;
+        }
+
+        button:hover {
+          background-color: #40739e;
+        }
+    </style>
+</head>
+<body>
+
+<h1>✏️ 상품 수정</h1>
+
+<form action="/edit" method="post">
+    <!-- 숨겨진 ID 필드 -->
+    <input type="hidden" name="productId" th:value="${product.id}" />
+
+    <label>
+        상품명
+        <input type="text" name="productName" th:value="${product.productName}" required />
+    </label>
+
+    <label>
+        이미지 URL
+        <input type="text" name="imageUrl" th:value="${product.imageUrl}" required />
+    </label>
+
+    <label>
+        가격
+        <input type="number" name="price" th:value="${product.price}" required />
+    </label>
+
+    <label>
+        설명
+        <textarea name="description" rows="4" required th:text="${product.description}"></textarea>
+    </label>
+
+    <button type="submit">수정 완료</button>
+</form>
+
+</body>
+</html>
