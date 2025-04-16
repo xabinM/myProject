@@ -37,6 +37,9 @@ public class ProductController {
     @GetMapping("/myProducts")
     public String myProductsPage(Model model, HttpSession session) {
         Member loginMember = (Member) session.getAttribute("loginMember");
+        if (loginMember == null) {
+            return "redirect:/login";
+        }
         List<Product> myProducts = productService.getMyProducts(loginMember.getId());
         model.addAttribute("myProducts", myProducts);
 
