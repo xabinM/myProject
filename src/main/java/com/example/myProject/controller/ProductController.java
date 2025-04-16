@@ -69,8 +69,10 @@ public class ProductController {
 
     @PostMapping("/edit")
     public String editProduct(@Valid @ModelAttribute ProductEditRequest request, HttpSession session) {
-        Member loginMember = (Member) session.getAttribute("loginMember");
-        productService.updateProduct(loginMember.getId(), request);
+        //당장 필요없는 코드 나중에 삭제 가능 멤버인지 체크할 때 사용해야함
+//        Member loginMember = (Member) session.getAttribute("loginMember");
+
+        productService.updateProduct(request.getProductId(), request);
 
         return "redirect:/products";
     }
