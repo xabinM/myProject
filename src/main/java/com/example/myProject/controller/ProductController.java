@@ -21,7 +21,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
@@ -47,13 +46,21 @@ public class ProductController {
     }
 
     @GetMapping("/register")
-    public String registerPage() {
+    public String registerPage(HttpSession session) {
+        Member loginMember = (Member) session.getAttribute("loginMember");
+        if (loginMember == null) {
+            return "redirect:/login";
+        }
+
         return "product_registration";
     }
 
     @PostMapping("/register")
     public String registerProduct(@Valid @ModelAttribute ProductRegisterRequest request, HttpSession session) {
         Member loginMember = (Member) session.getAttribute("loginMember");
+        if (loginMember == null) {
+            return "redirect:/login";
+        }
 
         productService.registerProduct(request, loginMember);
 
