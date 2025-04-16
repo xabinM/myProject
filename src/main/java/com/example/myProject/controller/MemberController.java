@@ -25,7 +25,7 @@ public class MemberController {
         Member member = (Member) session.getAttribute("loginMember");
         if (member != null) {
             model.addAttribute("username", member.getUsername());
-            return "index";
+            return "redirect:/";
         }
         return "signup";        // → templates/signup.html 을 보여줌
     }
@@ -44,7 +44,7 @@ public class MemberController {
 
         if (member != null) {
             model.addAttribute("username", member.getUsername());
-            return "index";
+            return "redirect:/";
         }
 
         return "login";
