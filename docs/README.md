@@ -1,7 +1,9 @@
 ## 구현해야할 것
 
-1. []jwt 
+1. login & signIn
+   - []jwt 
    - []접근 가능 페이지 or not 구분해야댐
+   - 중복체크
 
 2. []google-oauth
 
