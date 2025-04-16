@@ -71,6 +71,16 @@
       color: #555;
     }
 
+    .edit-btn {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
     .delete-btn {
       background-color: #e74c3c;
       color: white;
@@ -97,7 +107,7 @@
     <div class="product-price" th:text="|${product.price}원|"></div>
     <div class="product-desc" th:text="${product.description}"></div>
     <div th:text="${product.status == 'SOLD_OUT' ? '판매완료' : '판매중'}"></div>
-    <button type="button" th:onclick="|location.href='@{/products/{id}/edit(id=${product.id})}'|">수정하기</button>
+    <button type="button" class="edit-btn" th:onclick="|location.href='@{/products/{id}/edit(id=${product.id})}'|">수정하기</button>
     <form th:action="@{/products/{id}/delete(id=${product.id})}" method="post">
       <button type="submit" class="delete-btn">
         삭제하기
