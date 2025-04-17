@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>내 상품 목록</title>
+  <link rel="stylesheet" href="/css/style.css">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,26 +15,7 @@
     h1 {
       text-align: center;
       color: #333;
-    }
-
-    .register-btn-container {
-      text-align: right;
-      margin-bottom: 20px;
-    }
-
-    .register-btn {
-      padding: 10px 20px;
-      background-color: #487eb0;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .register-btn:hover {
-      background-color: #40739e;
+      margin-top: 100px;
     }
 
     .product-list {
@@ -91,75 +74,12 @@
       margin-top: 10px;
     }
 
-    /* ✅ 드롭다운 스타일 */
-    .header {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: white;
-      padding: 20px 30px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      text-decoration: none;
-      color: #2f3640;
-    }
-
-    .user-box {
-      position: relative;
-    }
-
-    .user-name {
-      cursor: pointer;
-      font-weight: bold;
-      color: #2f3640;
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 35px;
-      right: 0;
-      background-color: white;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      padding: 10px;
-      display: none;
-      z-index: 999;
-    }
-
-    .dropdown a {
-      display: block;
-      padding: 8px 12px;
-      text-decoration: none;
-      color: #333;
-    }
-
-    .dropdown a:hover {
-      background-color: #f1f2f6;
-    }
   </style>
 </head>
 <body>
-<header style="position: absolute; top: 40px; text-align: center; width: 100%;">
-  <a href="/" style="text-decoration: none; color: #2f3640; font-size: 24px; font-weight: bold;">
-    🛍️ 로고
-  </a>
-</header>
+<div th:replace="fragments/header :: headerFragment"></div>
 
 <h1>📦 내 상품 목록</h1>
-
-<!-- ✅ 버튼: 스타일 분리 완료 -->
-<div class="register-btn-container">
-  <button class="register-btn" onclick="location.href='/register'">+ 상품 등록하기</button>
-</div>
 
 <div class="product-list">
   <div th:each="product : ${myProducts}" class="product-card">
@@ -168,6 +88,7 @@
     <div class="product-price" th:text="|${product.price}원|"></div>
     <div class="product-desc" th:text="${product.description}"></div>
     <div th:text="${product.status == 'SOLD_OUT' ? '판매완료' : '판매중'}"></div>
+    <div th:text="${product.deleted ? '삭제됨' : '삭제 안됨'}"></div>
     <button type="button" class="edit-btn" th:onclick="|location.href='@{/products/{id}/edit(id=${product.id})}'|">수정하기</button>
     <form th:action="@{/products/{id}/delete(id=${product.id})}" method="post">
       <button type="submit" class="delete-btn">
@@ -176,5 +97,8 @@
     </form>
   </div>
 </div>
+
+<script src="/js/header.js"></script>
+
 </body>
 </html>

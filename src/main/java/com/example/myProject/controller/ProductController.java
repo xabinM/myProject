@@ -39,18 +39,23 @@ public class ProductController {
         if (loginMember == null) {
             return "redirect:/login";
         }
+        model.addAttribute("username", loginMember.getUsername());
         List<Product> myProducts = productService.getMyProducts(loginMember.getId());
+        for (Product product : myProducts) {
+            System.out.println("상품 ID: " + product.getId() + ", 삭제됨?: " + product.isDeleted());
+        }
         model.addAttribute("myProducts", myProducts);
 
         return "my_products";
     }
 
     @GetMapping("/register")
-    public String registerPage(HttpSession session) {
+    public String registerPage(HttpSession session, Model model) {
         Member loginMember = (Member) session.getAttribute("loginMember");
         if (loginMember == null) {
             return "redirect:/login";
         }
+        model.addAttribute("username", loginMember.getUsername());
 
         return "product_registration";
     }
@@ -71,7 +76,6 @@ public class ProductController {
     public String editPage(@PathVariable Long id, Model model) {
         Product product = productService.getProduct(id);
 
-        // 이 상품을 수정한다는  model 던지기
         model.addAttribute("product", product);
 
         return "edit";
@@ -84,13 +88,13 @@ public class ProductController {
 
         productService.updateProduct(request.getProductId(), request);
 
-        return "redirect:/my_products";
+        return "redirect:/myProducts";
     }
 
     @PostMapping("/products/{id}/delete")
     public String deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
 
-        return "redirect:/my_products";
+        return "redirect:/myProducts";
     }
 }

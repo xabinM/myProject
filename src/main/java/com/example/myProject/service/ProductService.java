@@ -44,7 +44,7 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        return productRepository.findAllByIsDeletedFalse();
+        return productRepository.findAllByDeletedFalse();
     }
 
     @Transactional  // dirty checking 을 위한

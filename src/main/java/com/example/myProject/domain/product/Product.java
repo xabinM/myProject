@@ -32,7 +32,7 @@ public class Product extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private ProductStatus status;
 
-    private boolean isDeleted;
+    private boolean deleted;
 
     public void updatePartial(ProductEditRequest request) {
         if (request.getProductName() != null) {
