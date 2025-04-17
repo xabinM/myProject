@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>나의 스프링 프로젝트</title>
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         body {
           font-family: 'Arial', sans-serif;
@@ -138,91 +139,14 @@
           cursor: pointer;
           margin-top: 10px;
         }
-
-        /* ✅ 드롭다운 스타일 */
-        .header {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          background: white;
-          padding: 20px 30px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .logo {
-          font-size: 22px;
-          font-weight: bold;
-          text-decoration: none;
-          color: #2f3640;
-        }
-
-        .user-box {
-          position: relative;
-        }
-
-        .user-name {
-          cursor: pointer;
-          font-weight: bold;
-          color: #2f3640;
-        }
-
-        .dropdown {
-          position: absolute;
-          top: 35px;
-          right: 0;
-          background-color: white;
-          border: 1px solid #ccc;
-          border-radius: 8px;
-          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-          padding: 10px;
-          display: none;
-          z-index: 999;
-        }
-
-        .dropdown a {
-          display: block;
-          padding: 8px 12px;
-          text-decoration: none;
-          color: #333;
-        }
-
-        .dropdown a:hover {
-          background-color: #f1f2f6;
-        }
     </style>
 </head>
 <body>
-
-<!-- ✅ 상단 로고 & 유저 메뉴 -->
-<div class="header">
-    <a class="logo" href="/">🛍️ 로고</a>
-
-    <!-- 로그인 O -->
-    <div class="user-box" th:if="${username}">
-        <span class="user-name" onclick="toggleDropdown()">👤 <span th:text="${username}">사용자</span> ▼</span>
-        <div id="dropdownMenu" class="dropdown">
-            <a href="/profile">내 정보</a>
-            <a href="/logout">로그아웃</a>
-        </div>
-    </div>
-
-    <!-- 로그인 X -->
-    <div th:unless="${username}">
-        <button class="login-btn" onclick="location.href='/login'">로그인</button>
-        <button class="signup-btn" onclick="location.href='/signup'">회원가입</button>
-    </div>
-</div>
+<div th:replace="fragments/header :: headerFragment"></div>
 
 <!-- ✅ 본문 콘텐츠 -->
 <h1>👋 나의 스프링 프로젝트에 오신 것을 환영합니다!</h1>
 
-<!--<div th:if="${username}" class="button-group">-->
-<!--    <button onclick="location.href='/products'">상품 목록</button>-->
-<!--</div>-->
 <div class="register-btn-container">
     <button class="register-btn" onclick="location.href='/register'">+ 상품 등록하기</button>
 </div>
@@ -237,22 +161,7 @@
     </div>
 </div>
 
-<!-- ✅ 드롭다운 스크립트 -->
-<script>
-    function toggleDropdown() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = menu.style.display === "block" ? "none" : "block";
-    }
-
-    window.addEventListener('click', function(e) {
-      const trigger = document.querySelector(".user-name");
-      const menu = document.getElementById("dropdownMenu");
-
-      if (!trigger.contains(e.target)) {
-        menu.style.display = "none";
-      }
-    });
-</script>
+<script src="/js/header.js"></script>
 
 </body>
 </html>

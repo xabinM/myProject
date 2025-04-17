@@ -1,0 +1,54 @@
+  /* ✅ 드롭다운 스타일 */
+  .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 20px 30px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  }
+
+  .logo {
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #2f3640;
+  }
+
+  .user-box {
+  position: relative;
+  }
+
+  .user-name {
+  cursor: pointer;
+  font-weight: bold;
+  color: #2f3640;
+  }
+
+  .dropdown {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 10px;
+  display: none;
+  z-index: 999;
+  }
+
+  .dropdown a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #333;
+  }
+
+  .dropdown a:hover {
+  background-color: #f1f2f6;
+  }

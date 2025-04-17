@@ -1,0 +1,18 @@
+<div class="header" th:fragment="headerFragment">
+  <a class="logo" href="/">🛍️ 로고</a>
+
+  <!-- 로그인 O -->
+  <div class="user-box" th:if="${username}">
+    <span class="user-name" onclick="toggleDropdown()">👤 <span th:text="${username}">사용자</span> ▼</span>
+    <div id="dropdownMenu" class="dropdown">
+      <a href="/profile">내 정보</a>
+      <a href="/logout">로그아웃</a>
+    </div>
+  </div>
+
+  <!-- 로그인 X -->
+  <div th:unless="${username}">
+    <button class="login-btn" onclick="location.href='/login'">로그인</button>
+    <button class="signup-btn" onclick="location.href='/signup'">회원가입</button>
+  </div>
+</div>
