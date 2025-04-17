@@ -42,7 +42,7 @@ public class ProductController {
         List<Product> myProducts = productService.getMyProducts(loginMember.getId());
         model.addAttribute("myProducts", myProducts);
 
-        return "myProducts";
+        return "my_products";
     }
 
     @GetMapping("/register")
@@ -64,7 +64,7 @@ public class ProductController {
 
         productService.registerProduct(request, loginMember);
 
-        return "redirect:/products";
+        return "redirect:/";
     }
 
     @GetMapping("/products/{id}/edit")
@@ -84,13 +84,13 @@ public class ProductController {
 
         productService.updateProduct(request.getProductId(), request);
 
-        return "redirect:/products";
+        return "redirect:/my_products";
     }
 
     @PostMapping("/products/{id}/delete")
     public String deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
 
-        return "redirect:/products";
+        return "redirect:/my_products";
     }
 }

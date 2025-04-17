@@ -234,12 +234,6 @@
         <div class="product-price" th:text="|${product.price}원|"></div>
         <div class="product-desc" th:text="${product.description}"></div>
         <div th:text="${product.status == 'SOLD_OUT' ? '판매완료' : '판매중'}"></div>
-        <button type="button" class="edit-btn" th:onclick="|location.href='@{/products/{id}/edit(id=${product.id})}'|">수정하기</button>
-        <form th:action="@{/products/{id}/delete(id=${product.id})}" method="post">
-            <button type="submit" class="delete-btn">
-                삭제하기
-            </button>
-        </form>
     </div>
 </div>
 
