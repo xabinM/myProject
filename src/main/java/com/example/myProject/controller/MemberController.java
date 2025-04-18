@@ -31,11 +31,15 @@ public class MemberController {
     }
 
     @PostMapping("/signup")
-    public String signup(@ModelAttribute SignupRequest request) {
-        // DB에 저장
-        memberService.save(request);
+    public String signup(@ModelAttribute SignupRequest request, Model model) {
+        try {
+            memberService.save(request);
 
-        return "redirect:/login";
+            return "redirect:/login";
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            return "signup";
+        }
     }
 
     @GetMapping("/login")
