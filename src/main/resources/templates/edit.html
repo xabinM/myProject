@@ -69,21 +69,21 @@
 
 <form action="/edit" method="post">
     <!-- 숨겨진 ID 필드 -->
-    <input type="hidden" name="productId" th:value="${product.id}" />
+    <input type="hidden" name="productId" th:value="${product.id}"/>
 
     <label>
         상품명
-        <input type="text" name="productName" th:value="${product.productName}" required />
+        <input type="text" name="productName" th:value="${product.productName}" required/>
     </label>
 
     <label>
         이미지 URL
-        <input type="text" name="imageUrl" th:value="${product.imageUrl}" required />
+        <input type="text" name="imageUrl" th:value="${product.imageUrl}" required/>
     </label>
 
     <label>
         가격
-        <input type="number" name="price" th:value="${product.price}" required />
+        <input type="number" name="price" th:value="${product.price}" required/>
     </label>
 
     <label>

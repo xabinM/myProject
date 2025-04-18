@@ -1,55 +1,55 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>내 정보</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f6fa;
-      padding: 40px;
-    }
+    <meta charset="UTF-8">
+    <title>내 정보</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f5f6fa;
+          padding: 40px;
+        }
 
-    .profile-box {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-    }
+        .profile-box {
+          background: white;
+          padding: 30px;
+          border-radius: 12px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+          text-align: center;
+        }
 
-    .profile-box h2 {
-      color: #2f3640;
-    }
+        .profile-box h2 {
+          color: #2f3640;
+        }
 
-    .info-row {
-      margin: 10px 0;
-      font-size: 16px;
-    }
+        .info-row {
+          margin: 10px 0;
+          font-size: 16px;
+        }
 
-    .product-btn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      background-color: #487eb0;
-      color: white;
-      cursor: pointer;
-    }
+        .product-btn {
+          margin-top: 30px;
+          padding: 12px 24px;
+          font-size: 16px;
+          border: none;
+          border-radius: 8px;
+          background-color: #487eb0;
+          color: white;
+          cursor: pointer;
+        }
 
-    .product-btn:hover {
-      background-color: #40739e;
-    }
-  </style>
+        .product-btn:hover {
+          background-color: #40739e;
+        }
+    </style>
 </head>
 <body>
 
 <div class="profile-box">
-  <h2 th:text="|${username}님의 정보|">내 정보</h2>
-  <p class="info-row" th:text="|이메일: ${email}|">이메일: example@example.com</p>
+    <h2 th:text="|${username}님의 정보|">내 정보</h2>
+    <p class="info-row" th:text="|이메일: ${email}|">이메일: example@example.com</p>
 
-  <button class="product-btn" onclick="location.href='/myProducts'">내 상품 보기</button>
+    <button class="product-btn" onclick="location.href='/myProducts'">내 상품 보기</button>
 </div>
 
 </body>

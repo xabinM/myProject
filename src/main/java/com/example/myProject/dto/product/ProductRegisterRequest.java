@@ -6,7 +6,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter @Setter
+@Getter
+@Setter
 public class ProductRegisterRequest {
     @NotBlank(message = "상품 이름을 입력해주세요.")
     @Size(max = 255, message = "상품이름은 255자 이하로 입력해주세요.")
