@@ -37,5 +37,12 @@ out/
 .vscode/
 
 # add
-.env
-.yml
+*.env
+*.yml
+
+# H2 DB 파일
+*.mv.db
+*.trace.db
+
+# DB 디렉토리 전체 무시하고 싶다면
+data/
