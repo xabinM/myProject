@@ -40,10 +40,8 @@ public class ProductController {
             return "redirect:/login";
         }
         model.addAttribute("username", loginMember.getUsername());
+
         List<Product> myProducts = productService.getMyProducts(loginMember.getId());
-        for (Product product : myProducts) {
-            System.out.println("상품 ID: " + product.getId() + ", 삭제됨?: " + product.isDeleted());
-        }
         model.addAttribute("myProducts", myProducts);
 
         return "my_products";
