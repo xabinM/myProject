@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class ProductController {
@@ -36,9 +37,6 @@ public class ProductController {
     @GetMapping("/myProducts")
     public String myProductsPage(Model model, HttpSession session) {
         Member loginMember = (Member) session.getAttribute("loginMember");
-        if (loginMember == null) {
-            return "redirect:/login";
-        }
         model.addAttribute("username", loginMember.getUsername());
 
         List<Product> myProducts = productService.getMyProducts(loginMember.getId());
@@ -50,9 +48,6 @@ public class ProductController {
     @GetMapping("/register")
     public String registerPage(HttpSession session, Model model) {
         Member loginMember = (Member) session.getAttribute("loginMember");
-        if (loginMember == null) {
-            return "redirect:/login";
-        }
         model.addAttribute("username", loginMember.getUsername());
 
         return "product_registration";
@@ -61,9 +56,6 @@ public class ProductController {
     @PostMapping("/register")
     public String registerProduct(@Valid @ModelAttribute ProductRegisterRequest request, HttpSession session) {
         Member loginMember = (Member) session.getAttribute("loginMember");
-        if (loginMember == null) {
-            return "redirect:/login";
-        }
 
         productService.registerProduct(request, loginMember);
 
@@ -71,8 +63,14 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}/edit")
-    public String editPage(@PathVariable Long id, Model model) {
+    public String editPage(@PathVariable Long id, Model model, HttpSession session) {
+        //당장 필요없는 코드 나중에 삭제 가능 멤버인지 체크할 때 사용해야함
+        Member loginMember = (Member) session.getAttribute("loginMember");
         Product product = productService.getProduct(id);
+
+        if (!Objects.equals(loginMember.getId(), product.getSeller().getId())) {
+            throw new IllegalArgumentException("잘못된 접근");
+        }
 
         model.addAttribute("product", product);
 
@@ -81,8 +79,6 @@ public class ProductController {
 
     @PostMapping("/edit")
     public String editProduct(@Valid @ModelAttribute ProductEditRequest request, HttpSession session) {
-        //당장 필요없는 코드 나중에 삭제 가능 멤버인지 체크할 때 사용해야함
-//        Member loginMember = (Member) session.getAttribute("loginMember");
 
         productService.updateProduct(request.getProductId(), request);
 

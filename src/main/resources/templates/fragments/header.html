@@ -6,7 +6,9 @@
     <span class="user-name" onclick="toggleDropdown()">👤 <span th:text="${username}">사용자</span> ▼</span>
     <div id="dropdownMenu" class="dropdown">
       <a href="/profile">내 정보</a>
-      <a href="/logout">로그아웃</a>
+      <form action="/logout" method="post">
+        <button type="submit">로그아웃</button>
+      </form>
     </div>
   </div>
 

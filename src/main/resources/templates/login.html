@@ -79,6 +79,8 @@
 
 
   <form action="/login" method="post">
+    <input type="hidden" name="redirectURL" th:value="${redirectURL}" />
+
     <label>아이디:
       <input type="text" name="username" required />
     </label>

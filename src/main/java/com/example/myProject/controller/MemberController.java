@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MemberController {
@@ -43,31 +44,36 @@ public class MemberController {
     }
 
     @GetMapping("/login")
-    public String loginPage(HttpSession session, Model model) {
+    public String loginPage(@RequestParam(defaultValue = "/") String redirectURL, HttpSession session, Model model) {
         Member member = (Member) session.getAttribute("loginMember");
 
+        System.out.println("redirectURL : " + redirectURL);
         if (member != null) {
             model.addAttribute("username", member.getUsername());
             return "redirect:/";
         }
 
+        model.addAttribute("redirectURL", redirectURL);
         return "login";
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute LoginRequest request, HttpSession session, Model model) {
+    public String login(@ModelAttribute LoginRequest request,
+                        @RequestParam(defaultValue = "/") String redirectURL,
+                        HttpSession session,
+                        Model model) {
         try {
             Member member = memberService.login(request.getUsername(), request.getPassword());
             session.setAttribute("loginMember", member);
 
-            return "redirect:/";
+            return "redirect:" + redirectURL;
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
             return "login";
         }
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
