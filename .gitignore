@@ -38,7 +38,6 @@ out/
 
 # add
 *.env
-*.yml
 
 # H2 DB 파일
 *.mv.db
